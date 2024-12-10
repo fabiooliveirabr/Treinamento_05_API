@@ -4,7 +4,7 @@ const db = mysql.createConnection({
   host: '172.16.142.16',     // Endereço do servidor MySQL
   user: 'estudante',          // Usuário do MySQL
   password: 'senai@2024',      // Senha do MySQL
-  database: 'bd_clinica',// Nome do banco de dados
+  database: 'banco_loja',// Nome do banco de dados
   port: 3306             // Porta do MySQL somente se necessário)
 });
 
