@@ -65,9 +65,23 @@ app.delete('/produtos/:id', (req, res) => {
     });
 });//Fim da rota deletar
 
-
-
-
-
-
-
+//Criar rota para atualizar
+app.put('/produtos', (req, res) => {
+    const {nome, preco, id} = req.body;
+    const sql = `UPDATE tb_produtos SET
+                 nome_produto = ?,
+                 preco = ? WHERE id_produto = ?`;
+    const api_key = req.headers['api_key'];
+    if(api_key !== '123456'){
+        return res.json({mensagem: "Chave inválida"});
+    }
+    db.query(sql, [nome, preco, id], (erro, resultado)=>{
+        if(erro){
+            return res.json({mensagem: "Falha ao atualizar: "+erro.message});
+        }
+        if(resultado.length == 0){
+            return res.json({mensagem: "Nada alterado"});
+        }
+        return res.json({mensagem: "Atualizado com sucesso!"});
+    });    
+});// Fim da rota atualizar
